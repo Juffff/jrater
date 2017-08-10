@@ -3,7 +3,7 @@ import axios from 'axios';
 import {apiPrefix} from '../../etc/config.json';
 
 export default {
-    getAllItems() {
+   /* getAllItems() {
         return axios.get(`${apiPrefix}/items`);
     },
 
@@ -20,13 +20,13 @@ export default {
                 console.log(error.response.headers);
             }
         })
-    },
+    },*/
 
-    updateItem(id, rating){
+    updateItem(department, rating){
         return axios({
             method: 'post',
             url: `${apiPrefix}/updateRate`,
-            data: {id: id, rating: rating}
+            data: {department: department, rating: rating}
 
         }).catch(function (error) {
             if (error.response) {

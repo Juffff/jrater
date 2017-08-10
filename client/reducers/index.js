@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
-import department from './department';
-import selector from './selector';
-import departmentRate from './departmantRate';
+import rater from './rater';
 
 export default combineReducers(
-    {department, selector, departmentRate}
+    {rater}
 )

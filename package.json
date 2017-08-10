@@ -7,7 +7,7 @@
     "devserver": "./node_modules/.bin/nodemon ./server/app.js --exec babel-node --presets es2015",
     "server": "babel-node server/app.js",
     "build": "babel-node ./node_modules/.bin/webpack --config webpack.config.js",
-    "wds": "node_modules/.bin/webpack-dev-server --debug --hot --devtool eval-source-map --watch --colors --inline --content-base ./public/ --port 8090 --host 0.0.0.0",
+    "wds": "babel-node node_modules/.bin/webpack-dev-server --debug --hot --devtool eval-source-map --watch --colors --inline --content-base ./public/ --port 8090 --host 0.0.0.0",
     "eslint": "eslint **/* || exit 0",
     "eslintfix": "eslint **/* --fix || exit 0",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,6 +21,7 @@
     "cors": "latest",
     "express": "^4.15.3",
     "flux": "^3.1.2",
+    "font-awesome-webpack": "0.0.5-beta.2",
     "less": "^2.7.2",
     "lodash": "^4.17.4",
     "masonry-layout": "^4.2.0",

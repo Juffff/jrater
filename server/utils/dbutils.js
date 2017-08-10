@@ -28,12 +28,12 @@ export function deleteItem(id) {
     return RateItem.findById(id).remove();
 }
 
-export function updateItem(id, rate) {
-    RateItem.findById(id, function (err, rateItem) {
-        console.log(rateItem);
+export function updateItem(department, rate) {
+    RateItem.findOne({name: department}, function (err, rateItem) {
         if (err) return console.log(err);
-        rateItem.rate =  (rateItem.rate + rate)/(rateItem.count + 1);
+        rateItem.rate =  (rateItem.rate*rateItem.count + rate)/(rateItem.count + 1);
         rateItem.count = rateItem.count + 1 ;
         rateItem.save();
+        console.log(rateItem.rate, rateItem.count );
     });
 }

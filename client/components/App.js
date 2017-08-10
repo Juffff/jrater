@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.less';
-import Selector from './Selector';
 import RaterContainer from './RaterContainer';
 
 
@@ -8,7 +7,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <Selector />
+                <h1>Пожалуйста, оцените качество нашей работы</h1>
                 <RaterContainer />
             </div>
         );

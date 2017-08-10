@@ -1,6 +1,7 @@
 import api from '../api';
+import {department} from '../config/config';
 
-const getAllRateItems = (data) => ({
+/*const getAllRateItems = (data) => ({
     type: 'GET_ALL_RATE_ITEMS',
     data: data
 });
@@ -16,24 +17,28 @@ export const getRateItemslist = () => {
         ).then(data => dispatch(downloadedRateItemslist(data))
         )
     };
-};
+};*/
 
-export const downloadedRateItemslist = (data) => ({
+/*export const downloadedRateItemslist = (data) => ({
     type: 'GET_RATE_ITEMS_LIST',
     data: data
-});
+});*/
 
+/*
 export const rate = (value) => ({
     type: 'RATE',
     value: value
 });
+*/
 
+/*
 export const selectDepartment = (value) => ({
     type: 'SELECT_DEPARTMENT',
     department: value.value
 });
+*/
 
-export const downloadedDepartmentRate = (department) => ({
+/*export const downloadedDepartmentRate = (department) => ({
     type: 'GET_DEPARTMENT_RATE',
     department: department
 });
@@ -49,23 +54,22 @@ export const getDepartmentRate = (department) => {
         ).then(data => dispatch(downloadedDepartmentRate(data))
         )
     };
-};
+};*/
 
-export const sendUpdateRating = (id, rating) => ({
+export const sendUpdateRating = (rating) => ({
     type: 'UPDATE_RATING',
-    id: id,
     rating: rating
 });
 
-const sendRating = (id, rating) => {
-  return api.updateItem(id, rating);
+const sendRating = (rating) => {
+  return api.updateItem(department, rating);
 };
 
-export const updateRating = (id, rating) => {
+export const updateRating = (rating) => {
     return function (dispatch) {
-        return sendRating(id, rating).then(
+        return sendRating(rating).then(
             data => data
-        ).then(data => dispatch(sendUpdateRating(id, rating))
+        ).then(data => dispatch(sendUpdateRating(rating))
         )
     };
 };

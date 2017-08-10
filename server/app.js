@@ -28,12 +28,11 @@ const corsOptions = {
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
-// Fake db fill TODO:// kill it!
-import fakeitems from './utils/createFakeDbItems';
+import createItems from './utils/createItems';
 
 // Connect to DB
 db.connect();
-fakeitems(db);
+createItems(db);
 
 
 // Create and start server
@@ -43,30 +42,29 @@ app.use(cors(corsOptions));
 
 // Items API
 
-app.get('/items', (req, res) => {
+/*app.get('/items', (req, res) => {
     db.listItems().then(data => res.send(data));
-});
+});*/
+/*
 
 app.post('/getRate', (req, res) => {
     const department = req.body.value;
     db.listItems({name: department}).then(data => res.send(data))
 
 });
+*/
 
 app.post('/updateRate', (req, res) => {
     console.log(req.body);
-    db.updateItem(req.body.id, req.body.rating);
-
-/*    const department = req.body.value;
-    db.listItems({name: department}).then(data => res.send(data))*/
-
+    db.updateItem(req.body.department, req.body.rating);
 });
 
-
-app.delete('/items:id', (req, res) => {
-    db.deleteItem(req.params.id).then(data => res.send(data));
+app.get('/thnk', (req, res) => {
+res.send(`
+<h1>Спасибо за Ваш голос!</h1>
+<h2><a href="http://localhost:8090">Назад</a></h2>
+`);
 });
-
 
 app.listen(serverPort, () => {
     console.log(`Server is running on ${serverPort}`);
