@@ -6,7 +6,7 @@ module.exports = (db) => {
                 name: 'Secretary',
                 rate: 0,
                 count: 0,
-                description: 'Secretary department'
+                detailInfo: []
             });
         }
     });

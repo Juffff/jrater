@@ -28,12 +28,17 @@ export function deleteItem(id) {
     return RateItem.findById(id).remove();
 }
 
-export function updateItem(department, rate) {
+export function updateItem(department, rate, text) {
     RateItem.findOne({name: department}, function (err, rateItem) {
         if (err) return console.log(err);
         rateItem.rate =  (rateItem.rate*rateItem.count + rate)/(rateItem.count + 1);
         rateItem.count = rateItem.count + 1 ;
+        rateItem.detailInfo = rateItem.detailInfo.concat({
+            count: rateItem.count,
+            date: Date.now(),
+            rate: rate,
+            comment: text
+        });
         rateItem.save();
-        console.log(rateItem.rate, rateItem.count );
     });
 }

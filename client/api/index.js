@@ -3,30 +3,13 @@ import axios from 'axios';
 import {apiPrefix} from '../../etc/config.json';
 
 export default {
-   /* getAllItems() {
-        return axios.get(`${apiPrefix}/items`);
-    },
 
-    getItem(item){
-        return axios({
-            method: 'post',
-            url: `${apiPrefix}/getRate`,
-            data: item
-
-        }).catch(function (error) {
-            if (error.response) {
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-            }
-        })
-    },*/
-
-    updateItem(department, rating){
+    updateItem(department, rating, text){
+        console.log(rating);
         return axios({
             method: 'post',
             url: `${apiPrefix}/updateRate`,
-            data: {department: department, rating: rating}
+            data: {department: department, rating: rating, text: text}
 
         }).catch(function (error) {
             if (error.response) {

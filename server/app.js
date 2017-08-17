@@ -22,11 +22,12 @@ import bodyParser from 'body-parser';
 import * as db from './utils/dbutils';
 import {serverPort} from './config/config.json';
 import cors from 'cors';
+import {sendStat} from './utils/sendStat';
 
 const corsOptions = {
     origin: '*',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
+};
 
 import createItems from './utils/createItems';
 
@@ -40,31 +41,19 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 
-// Items API
-
-/*app.get('/items', (req, res) => {
-    db.listItems().then(data => res.send(data));
-});*/
-/*
-
-app.post('/getRate', (req, res) => {
-    const department = req.body.value;
-    db.listItems({name: department}).then(data => res.send(data))
-
-});
-*/
 
 app.post('/updateRate', (req, res) => {
-    console.log(req.body);
-    db.updateItem(req.body.department, req.body.rating);
+    if(req.body.text === ''){console.log('empty')}
+    db.updateItem(req.body.department, req.body.rating, req.body.text);
 });
 
-app.get('/thnk', (req, res) => {
-res.send(`
-<h1>Спасибо за Ваш голос!</h1>
-<h2><a href="http://localhost:8090">Назад</a></h2>
-`);
+app.get('/admin', (req, res) => {
+    db.listItems({name: 'Secretary'}).then(data => {
+        res.send(sendStat(data[0]));
+    });
 });
+
+
 
 app.listen(serverPort, () => {
     console.log(`Server is running on ${serverPort}`);
