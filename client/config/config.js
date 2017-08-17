@@ -1,1 +1,1 @@
-export  const department = `Secretary`;
+export const department = 'Secretary';

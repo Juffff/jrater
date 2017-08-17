@@ -1,4 +1,19 @@
-export const sendStat = (data) => {
+const dateFormat = require('dateformat');
+const replaceall = require("replaceall");
+
+
+export const sendStat = data => {
+    let text = data.detailInfo.map(el => {
+        return (`
+<tr>
+<td>${dateFormat(new Date(el.date), "yyyy-mm-dd HH:MM:ss")}</td>
+<td>${el.rate}</td>
+<td>${el.comment}</td>
+</tr>`);
+    });
+
+    text = replaceall(",","",text.toString());
+
     return `
 <!DOCTYPE html>
 <html lang="en">
@@ -27,20 +42,12 @@ export const sendStat = (data) => {
     </tr>
     </thead>
     <tbody>
- ` +
-    data.detailInfo.map(el => (`<tr>
-<td>${new Date(el.date)}
-    </td>
-    <td>${el.rate}</td>
-    <td>${el.comment}</td>
-    </tr>`))
+ ${
+    
+text
 
-
-    +`    </tbody>
+    }    </tbody>
     </table>
 
     </body>
-    </html>`
-
-
-    };
+    </html>`};

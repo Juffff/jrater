@@ -1,15 +1,9 @@
 
 .RaterWrapper {
-  width: 80vmax;
-  height: 44vmax;
+  width: 100vw;
+  height: 100vh;
   border-radius: 2vmax;
-  background: -moz-linear-gradient(45deg, rgba(255,255,255,0.9) 0%, rgba(0,0,0,1) 100%); /* ff3.6+ */
-  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(255,255,255,0.9)), color-stop(100%, rgba(0,0,0,1))); /* safari4+,chrome */
-  background: -webkit-linear-gradient(45deg, rgba(255,255,255,0.9) 0%, rgba(0,0,0,1) 100%); /* safari5.1+,chrome10+ */
-  background: -o-linear-gradient(45deg, rgba(255,255,255,0.9) 0%, rgba(0,0,0,1) 100%); /* opera 11.10+ */
-  background: -ms-linear-gradient(45deg, rgba(255,255,255,0.9) 0%, rgba(0,0,0,1) 100%); /* ie10+ */
-  background: linear-gradient(45deg, rgba(255,255,255,0.9) 0%, rgba(0,0,0,1) 100%); /* w3c */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#ffffff',GradientType=1 ); /* ie6-9 */
+
   box-shadow: inset 0 0 0 3000px rgba(255,255,255,0.3);
 /*  filter: blur(10px);*/
 }
@@ -30,10 +24,16 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: 10%;
   text-align: center;
-  h1 {
+  .invite{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: red;
     width: 100%;
+    height: 12vh;
+    margin: 0;
   }
 }
 
@@ -52,13 +52,13 @@
   line-height: 14;
 }
 
-.commentVisible{
+.visible{
   display: block;
   transition: opacity 1.5s ease-in-out;
   opacity: 1;
 }
 
-.commentInvisible{
+.invisible{
   height: 0;
   overflow: hidden;
   transition: opacity 1.5s ease-in-out;
@@ -85,5 +85,6 @@
     margin: 2.5vmax auto auto;
     height: 2.5vmax;
   }
+
 
 }

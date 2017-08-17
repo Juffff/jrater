@@ -6,6 +6,6 @@ const RateItemSchema = new Schema({
   rate: Number,
   count: Number,
   description: String,
-  detailInfo: Array
+  detailInfo: Array,
 });
 const RateItem = mongoose.model('RateItem', RateItemSchema);

@@ -20,13 +20,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import * as db from './utils/dbutils';
-import {serverPort} from './config/config.json';
+import { serverPort } from './config/config.json';
 import cors from 'cors';
-import {sendStat} from './utils/sendStat';
+import { sendStat } from './utils/sendStat';
 
 const corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  origin: '*',
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
 import createItems from './utils/createItems';
@@ -43,18 +43,17 @@ app.use(cors(corsOptions));
 
 
 app.post('/updateRate', (req, res) => {
-    if(req.body.text === ''){console.log('empty')}
-    db.updateItem(req.body.department, req.body.rating, req.body.text);
+  if (req.body.text === '') { console.log('empty'); }
+  db.updateItem(req.body.department, req.body.rating, req.body.text);
 });
 
 app.get('/admin', (req, res) => {
-    db.listItems({name: 'Secretary'}).then(data => {
-        res.send(sendStat(data[0]));
-    });
+  db.listItems({ name: 'Secretary' }).then((data) => {
+    res.send(sendStat(data[0]));
+  });
 });
 
 
-
 app.listen(serverPort, () => {
-    console.log(`Server is running on ${serverPort}`);
+  console.log(`Server is running on ${serverPort}`);
 });
