@@ -4,12 +4,11 @@ import { apiPrefix } from '../../etc/config.json';
 
 export default {
 
-  updateItem(department, rating, text) {
-    console.log(rating);
+  updateItem(department, rating) {
     return axios({
       method: 'post',
       url: `${apiPrefix}/updateRate`,
-      data: { department, rating, text },
+      data: { department, rating },
 
     }).catch((error) => {
       if (error.response) {
@@ -19,5 +18,20 @@ export default {
       }
     });
   },
+
+  sendComment(text, count, department){
+    return axios({
+      method: 'post',
+      url: `${apiPrefix}/sendComment`,
+      data: { department, count, text },
+
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      }
+    });
+  }
 };
 

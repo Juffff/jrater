@@ -48,6 +48,10 @@
   transition: opacity 1.5s ease-in-out;
 }
 
+.thanksHolder{
+  text-align: center;
+}
+
 .thanksMessage{
   line-height: 14;
 }
@@ -65,26 +69,55 @@
   opacity: 0;
 }
 
-.sendButton{
-  height: 3vmax;
-  width: 50%;
-  background-color: darkmagenta;
-  color: white;
-  border-radius: 1vmax;
-  margin: 2vmax auto auto;
-  line-height: 2.3;
-  opacity: 0.8;
+.commentControls{
 
-  &:hover{
-    background-color: magenta;
-    cursor: pointer;
+  display: flex;
+  width: 80%;
+  margin: auto;
+
+  .sendButton{
+    height: 3vmax;
+    width: 50%;
+    background-color: green;
+    color: white;
+    border-radius: 1vmax;
+    margin: 2vmax auto auto;
+    line-height: 2.3;
+    opacity: 0.8;
+
+    &:hover{
+      background-color: greenyellow;
+      cursor: pointer;
+    }
+
+    &:active{
+      width: 48%;
+      margin: 2.5vmax auto auto;
+      height: 2.5vmax;
+    }
+
   }
 
-  &:active{
-    width: 48%;
-    margin: 2.5vmax auto auto;
-    height: 2.5vmax;
+  .cancelButton {
+    height: 3vmax;
+    width: 50%;
+    background-color: darkred;
+    color: white;
+    border-radius: 1vmax;
+    margin: 2vmax auto auto;
+    line-height: 2.3;
+    opacity: 0.8;
+
+    &:hover {
+      background-color: red;
+      cursor: pointer;
+    }
+
+    &:active {
+      width: 48%;
+      margin: 2.5vmax auto auto;
+      height: 2.5vmax;
+    }
   }
-
-
 }
+

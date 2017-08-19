@@ -1,17 +1,23 @@
 import api from '../api';
-import { department } from '../config/config';
+import {department} from '../config/config';
 
-export const sendUpdateRating = rating => ({
-  type: 'UPDATE_RATING',
-  rating,
+export const sendUpdateRating = count => ({
+    type: 'UPDATE_RATING',
+    count,
 });
 
-const sendRating = (rating, text) => api.updateItem(department, rating, text);
+const sendRating = (rating) => api.updateItem(department, rating);
 
-export const updateRating = (rating, text) => function (dispatch) {
-  return sendRating(rating, text).then(
-            data => data,
-        ).then(data => dispatch(sendUpdateRating(rating)),
-        );
+export const updateRating = (rating) => function (dispatch) {
+    return sendRating(rating).then(data => data.data).then(data => {
+        dispatch(sendUpdateRating(data));
+    });
 };
 
+export const sendComment = (text, count) => dispatch => {
+    api.sendComment(text, count, department).then(data => dispatch({
+        type: 'SEND_COMMENT',
+        data: data
+    }));
+
+};

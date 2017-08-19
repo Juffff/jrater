@@ -43,8 +43,13 @@ app.use(cors(corsOptions));
 
 
 app.post('/updateRate', (req, res) => {
-  if (req.body.text === '') { console.log('empty'); }
-  db.updateItem(req.body.department, req.body.rating, req.body.text);
+  db.updateItemRate(req.body.department, req.body.rating).then(data => res.send(data.toString()));
+});
+
+app.post('/sendComment', (req, res) => {
+  db.addItemComment(req.body.department, req.body.count, req.body.text);
+ console.log(req.body);
+
 });
 
 app.get('/admin', (req, res) => {
