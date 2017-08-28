@@ -5,7 +5,7 @@
   "main": "server/app.js",
   "scripts": {
     "devserver": "./node_modules/.bin/nodemon ./server/app.js --exec babel-node --presets es2015",
-    "server": "babel-node server/app.js",
+    "server": "./node_modules/.bin/babel-node server/app.js",
     "build": "babel-node ./node_modules/.bin/webpack --config webpack.config.js",
     "wds": "babel-node node_modules/.bin/webpack-dev-server --debug --hot --devtool eval-source-map --watch --colors --inline --content-base ./public/ --port 8090 --host 0.0.0.0",
     "eslint": "eslint **/* || exit 0",
@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.1",
