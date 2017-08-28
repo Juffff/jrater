@@ -46,6 +46,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
  */
 
+var expressWinston = require('express-winston-2');
+var winston = require('winston'); // for transports.Console
+
 var corsOptions = {
   origin: '*',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -59,6 +62,12 @@ db.connect();
 var app = (0, _express2.default)();
 app.use(_bodyParser2.default.json());
 app.use((0, _cors2.default)(corsOptions));
+app.use(expressWinston.errorLogger({
+  transports: [new winston.transports.Console({
+    json: true,
+    colorize: true
+  })]
+}));
 
 app.post('/updateRate', function (req, res) {
   db.updateItemRate(req.body.department, req.body.rating).then(function (data) {
@@ -81,8 +90,8 @@ app.get('/', function (req, res) {
   res.send('OK');
 });
 
-app.listen(_config.serverPort, function () {
-  console.log('Server is running on ' + _config.serverPort);
+app.listen(process.env.PORT || 5000, function () {
+  console.log('Server is running on ' + process.env.PORT);
 });
 ;
 

@@ -23,6 +23,8 @@ import * as db from './utils/dbutils';
 import { serverPort } from './config/config.json';
 import cors from 'cors';
 import { sendStat } from './utils/sendStat';
+const expressWinston = require('express-winston-2');
+const winston = require('winston'); // for transports.Console
 
 const corsOptions = {
   origin: '*',
@@ -40,6 +42,14 @@ createItems(db);
 const app = express();
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
+app.use(expressWinston.errorLogger({
+    transports: [
+        new winston.transports.Console({
+            json: true,
+            colorize: true
+        })
+    ]
+}));
 
 
 app.post('/updateRate', (req, res) => {
@@ -62,6 +72,6 @@ app.get('/', (req, res) => {
  res.send('OK');
 });
 
-app.listen(serverPort, () => {
-  console.log(`Server is running on ${serverPort}`);
+app.listen(process.env.PORT || 5000, () => {
+  console.log(`Server is running on ${process.env.PORT}`);
 });
