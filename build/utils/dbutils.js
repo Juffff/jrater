@@ -32,7 +32,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var RateItem = _mongoose2.default.model('RateItem');
 
 function connect() {
-    _mongoose2.default.connect('mongodb://' + _config.db.host + ':' + _config.db.port + '/' + _config.db.name);
+    // mongoose.connect(`mongodb://${db.host}:${db.port}/${db.name}`);
+    _mongoose2.default.connect('mongodb://juff:Splurgeola4848@ds161913.mlab.com:61913/heroku_s02vjssr');
     _mongoose2.default.set("debug", true);
 }
 

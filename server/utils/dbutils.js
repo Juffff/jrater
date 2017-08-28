@@ -6,7 +6,8 @@ import {db} from '../config/config.json';
 const RateItem = mongoose.model('RateItem');
 
 export function connect() {
-    mongoose.connect(`mongodb://${db.host}:${db.port}/${db.name}`);
+   // mongoose.connect(`mongodb://${db.host}:${db.port}/${db.name}`);
+    mongoose.connect(`mongodb://juff:Splurgeola4848@ds161913.mlab.com:61913/heroku_s02vjssr`);
     mongoose.set("debug", true);
 }
 
