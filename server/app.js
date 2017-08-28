@@ -58,6 +58,9 @@ app.get('/admin', (req, res) => {
   });
 });
 
+app.get('/', (req, res) => {
+ res.send('OK');
+});
 
 app.listen(serverPort, () => {
   console.log(`Server is running on ${serverPort}`);
