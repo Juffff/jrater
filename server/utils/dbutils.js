@@ -11,8 +11,8 @@ export function connect() {
     mongoose.set("debug", true);
 }
 
-export function listItems(filter) {
-    return RateItem.find(filter);
+export function listItems(data) {
+    return RateItem.find(data);
 }
 
 export function createItem(data) {
@@ -20,14 +20,10 @@ export function createItem(data) {
         name: data.name,
         rate: data.rate,
         count: data.count,
-        description: data.description,
+        detailInfo: data.detailInfo
     });
 
     return rateItem.save();
-}
-
-export function deleteItem(id) {
-    return RateItem.findById(id).remove();
 }
 
 export function updateItemRate(department, rate) {
@@ -44,21 +40,8 @@ export function updateItemRate(department, rate) {
             });
             rateItem.save();
         }).then(data => {
-
             resolve(data.detailInfo.length);
-
         });
-
-    });
-}
-
-export function addItemComment(department, count, text) {
-    if (text === undefined) text = 'No comments';
-    RateItem.findOne({name: department}, (err, rateItem) => {
-        let newData = Object.assign([], rateItem.detailInfo);
-        newData[count] = Object.assign({},  newData[count], {comment: text});
-        rateItem.detailInfo = newData;
-        rateItem.save();
 
     });
 }

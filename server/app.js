@@ -52,20 +52,11 @@ app.use(expressWinston.errorLogger({
 }));
 
 
-app.post('/updateRate', (req, res) => {
-  db.updateItemRate(req.body.department, req.body.rating).then(data => res.send(data.toString()));
-});
+app.post('/rate', (req, res) => {
+    console.log(req.body);
+    console.log(req.data);
 
-app.post('/sendComment', (req, res) => {
-  db.addItemComment(req.body.department, req.body.count, req.body.text);
- console.log(req.body);
-
-});
-
-app.get('/admin', (req, res) => {
-  db.listItems({ name: 'Secretary' }).then((data) => {
-    res.send(sendStat(data[0]));
-  });
+ /* db.updateItemRate(req.body.department, req.body.rating).then(data => res.send(data.toString()));*/
 });
 
 app.get('/', (req, res) => {
